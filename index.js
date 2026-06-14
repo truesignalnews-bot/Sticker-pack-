@@ -193,28 +193,43 @@ bot.on("text", async (ctx) => {
   }
 
   for (let b of found) {
-    await ctx.reply(`📦 ${b.title}`);
+  await ctx.reply(`📦 ${b.title}`);
 
-    const preview = (b.stickers || []).slice(0, 2);
+  const preview = (b.stickers || []).slice(0, 2);
 
-    for (let s of preview) {
-      try {
-        await ctx.replyWithSticker(s);
-      } catch {}
-    }
-
-    await ctx.reply("👇 Open Pack (1 Point Required)", {
-      reply_markup: {
-        inline_keyboard: [[
-          {
-            text: "📦 Open Pack",
-            callback_data: `open_${b.id}`
-          }
-        ]]
-      }
-    });
+  for (let s of preview) {
+    try {
+      await ctx.replyWithSticker(s);
+    } catch {}
   }
-});
+
+  await ctx.reply(
+`📦 PACK LOCKED
+
+🔒 Preview only
+
+👉 Open pack to get stickers
+💎 1 Point required
+
+👥 Invite friends to earn points
+
+👇 Tap button below`,
+{
+  reply_markup: {
+    inline_keyboard: [
+      [
+        {
+          text: "📦 Open Pack (1 Point)",
+          callback_data: `open_${b.id}`
+        }
+      ]
+    ]
+  }
+}
+  );
+}
+
+}); // ✅ THIS IS REQUIRED (VERY IMPORTANT)
 
 // ================= CALLBACK =================
 bot.on("callback_query", async (ctx) => {
