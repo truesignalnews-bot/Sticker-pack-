@@ -3,8 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 // ================= CONFIG =================
-const BOT_TOKEN = "8667702235:AAHhC9jgOt93ZXRvcvF75qxdXmEux6ZQG44";
-const BOT_USERNAME = "Stickorabot";
+const BOT_TOKEN = "8900933920:AAG5dukFGALivY3OKqzcLq3LG4C1tnqxT4U";
+const BOT_USERNAME = "Movie_hubbbbbbot";
 
 const BUNDLES_FILE = path.join(__dirname, "bundles.txt");
 const USERS_FILE = path.join(__dirname, "users.txt");
@@ -245,24 +245,30 @@ bot.on("callback_query", async (ctx) => {
   if (!pack) return ctx.answerCbQuery("❌ Not found");
 
   if (!user) {
-  user = { id: userId, refBy: "", points: 1 };
-  USERS.push(user);
-}
+    user = { id: userId, refBy: "", points: 0 };
+    USERS.push(user);
+  }
 
   if (user.points < 1) {
-  return ctx.reply(
+    return ctx.reply(
 `❌ Not enough points
 
 💎 You need 1 point to open this sticker pack
 
 🚀 Invite friends to earn points`,
-  );
-}
 {
   reply_markup: {
     inline_keyboard: [[
       {
-        url: `https://t.me/share/url?url=https://t.me/${BOT_USERNAME}?start=${userId}&text=🔥 Join This Sticker Hub Bot!%0A%0A📦 Unlimited Sticker Packs%0A😂 Funny Stickers%0A💕 Love Stickers%0A🎌 Anime Stickers%0A😎 Cool & Trending Stickers%0A💥 Special Exclusive Packs%0A%0A💎 Earn Points & Unlock Packs%0A👥 Invite Friends & Get Rewards%0A%0A🚀 Daily New Sticker Packs Added%0A👇 Start Now 👇`
+        text: "🎁 Share & Invite Friends",
+        url: `https://t.me/share/url?url=https://t.me/${BOT_USERNAME}?start=${userId}`
+      }
+    ]]
+  }
+}
+    );
+  }
+
   user.points -= 1;
   saveUsers();
 
@@ -287,6 +293,6 @@ bot.on("callback_query", async (ctx) => {
   }
 });
 });
-  
+
 bot.launch();
 console.log("🚀 CLEAN BOT RUNNING PERFECTLY");
