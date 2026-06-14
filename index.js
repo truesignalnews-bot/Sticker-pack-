@@ -245,9 +245,9 @@ bot.on("callback_query", async (ctx) => {
   if (!pack) return ctx.answerCbQuery("❌ Not found");
 
   if (!user) {
-    user = { id: userId, refBy: "", points: 0 };
-    USERS.push(user);
-  }
+  user = { id: userId, refBy: "", points: 1 };
+  USERS.push(user);
+}
 
   if (user.points < 1) {
     return ctx.reply(
