@@ -263,8 +263,6 @@ bot.on("callback_query", async (ctx) => {
     inline_keyboard: [[
       {
         url: `https://t.me/share/url?url=https://t.me/${BOT_USERNAME}?start=${userId}&text=🔥 Join This Sticker Hub Bot!%0A%0A📦 Unlimited Sticker Packs%0A😂 Funny Stickers%0A💕 Love Stickers%0A🎌 Anime Stickers%0A😎 Cool & Trending Stickers%0A💥 Special Exclusive Packs%0A%0A💎 Earn Points & Unlock Packs%0A👥 Invite Friends & Get Rewards%0A%0A🚀 Daily New Sticker Packs Added%0A👇 Start Now 👇`
-}
-
   user.points -= 1;
   saveUsers();
 
