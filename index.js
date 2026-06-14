@@ -251,11 +251,13 @@ bot.on("callback_query", async (ctx) => {
 
   if (user.points < 1) {
   return ctx.reply(
-❌ Not enough points
+`❌ Not enough points
 
 💎 You need 1 point to open this sticker pack
 
 🚀 Invite friends to earn points`,
+  );
+}
 {
   reply_markup: {
     inline_keyboard: [[
