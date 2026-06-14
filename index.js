@@ -277,6 +277,7 @@ bot.on("callback_query", async (ctx) => {
     ]]
   }
 });
-
+});
+  
 bot.launch();
 console.log("🚀 CLEAN BOT RUNNING PERFECTLY");
