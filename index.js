@@ -250,8 +250,8 @@ bot.on("callback_query", async (ctx) => {
 }
 
   if (user.points < 1) {
-    return ctx.reply(
-`❌ Not enough points
+  return ctx.reply(
+❌ Not enough points
 
 💎 You need 1 point to open this sticker pack
 
