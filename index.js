@@ -267,7 +267,15 @@ bot.on("callback_query", async (ctx) => {
     } catch {}
   }
 
-  ctx.reply(`🎁 PACK UNLOCKED\n📦 ${pack.title}`);
+  ctx.reply(`🎁 PACK UNLOCKED\n📦 ${pack.title}`, {
+  reply_markup: {
+    inline_keyboard: [[
+      {
+        text: "➕ Add Stickers",
+        url: pack.link
+      }
+    ]]
+  }
 });
 
 bot.launch();
