@@ -3,8 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 // ================= CONFIG =================
-const BOT_TOKEN = "8900933920:AAG5dukFGALivY3OKqzcLq3LG4C1tnqxT4U";
-const BOT_USERNAME = "Movie_hubbbbbbot";
+const BOT_TOKEN = "8667702235:AAHhC9jgOt93ZXRvcvF75qxdXmEux6ZQG44";
+const BOT_USERNAME = "Stickorabot";
 
 const BUNDLES_FILE = path.join(__dirname, "bundles.txt");
 const USERS_FILE = path.join(__dirname, "users.txt");
