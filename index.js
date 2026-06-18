@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 // ================= CONFIG =================
-const BOT_TOKEN = "8667702235:AAEEkzbBsFIGycRNqJUq42DFFVRdaEog8xI";
+const BOT_TOKEN = "8667702235:AAHt7Vj7iZ50eRO-eTdYK2LhLGB8gxyzno4";
 const BOT_USERNAME = "Stickorabot";
 const CHANNEL_USERNAME = "@green_portfolio10";
 const OWNER_ID = 1982966015;
@@ -235,21 +235,16 @@ bot.on("channel_post", async (ctx) => {
 });
 
 // ================= SEARCH =================
-// ================= SEARCH =================
 bot.on("text", async (ctx) => {
 
-  // ================= OWNER STATS =================
+  // OWNER STATS
   if (
     ctx.message.text === "/stats" &&
     String(ctx.from.id) === String(OWNER_ID)
   ) {
 
     const totalUsers = USERS.length;
-
-    const unlockedUsers = USERS.filter(
-      u => u.unlocked
-    ).length;
-
+    const unlockedUsers = USERS.filter(u => u.unlocked).length;
     const lockedUsers = totalUsers - unlockedUsers;
 
     return ctx.reply(
@@ -263,19 +258,7 @@ bot.on("text", async (ctx) => {
 
 📦 Total Sticker Packs: ${DB.length}`
     );
-
   }
-
-  if (ctx.message.text.startsWith("/")) return;
-
-  const userId = String(ctx.from.id);
-
-  let user = USERS.find(u => u.id === userId);
-});
-
-  // baaki tumhara code...
-
-bot.on("text", async (ctx) => {
 
   if (ctx.message.text.startsWith("/")) return;
 
