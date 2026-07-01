@@ -4,7 +4,7 @@ const path = require("path");
 
 // ================= CONFIG =================
 const BOT_TOKEN = "8667702235:AAF_1ZDB9Iv3hFmzsQ0BXxvz__DPQeoaKlE";
-const BOT_USERNAME = "@Stickorabot";
+const BOT_USERNAME = "Stickorabot";
 const CHANNEL_USERNAME = "@green_portfolio10";
 const OWNER_ID = 1982966015;
 
