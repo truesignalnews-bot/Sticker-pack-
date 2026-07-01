@@ -3,8 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 // ================= CONFIG =================
-const BOT_TOKEN = "8667702235:AAHt7Vj7iZ50eRO-eTdYK2LhLGB8gxyzno4";
-const BOT_USERNAME = "Stickorabot";
+const BOT_TOKEN = "8667702235:AAF_1ZDB9Iv3hFmzsQ0BXxvz__DPQeoaKlE";
+const BOT_USERNAME = "Movie_hubbbbbbot";
 const CHANNEL_USERNAME = "@green_portfolio10";
 const OWNER_ID = 1982966015;
 
@@ -77,6 +77,8 @@ setInterval(loadDB, 5000);
 
 // ================= BOT =================
 const bot = new Telegraf(BOT_TOKEN);
+
+const BROADCAST_MODE = new Set();
 
 // ================= START =================
 bot.start(async (ctx) => {
@@ -234,6 +236,36 @@ bot.on("channel_post", async (ctx) => {
   }
 });
 
+bot.command("broadcast", async (ctx) => {
+
+    if (String(ctx.from.id) !== String(OWNER_ID))
+        return;
+
+    BROADCAST_MODE.add(String(ctx.from.id));
+
+    ctx.reply(
+`📢 Broadcast Mode Enabled
+
+Now send any Photo, Video, Text, GIF, Document or Sticker.
+
+It will be sent to all users.
+
+Send /cancel to cancel.`
+    );
+
+});
+
+bot.command("cancel", (ctx) => {
+
+    if (String(ctx.from.id) !== String(OWNER_ID))
+        return;
+
+    BROADCAST_MODE.delete(String(ctx.from.id));
+
+    ctx.reply("❌ Broadcast Cancelled.");
+
+});
+
 // ================= SEARCH =================
 bot.on("text", async (ctx) => {
 
@@ -362,6 +394,54 @@ After completing both steps, press the button below.
     );
 
   }
+
+});
+
+bot.on("message", async (ctx) => {
+
+    const userId = String(ctx.from.id);
+
+    if (userId !== String(OWNER_ID))
+        return;
+
+    if (!BROADCAST_MODE.has(userId))
+        return;
+
+    if (ctx.message.text &&
+        (ctx.message.text.startsWith("/broadcast") ||
+         ctx.message.text.startsWith("/cancel")))
+        return;
+
+    BROADCAST_MODE.delete(userId);
+
+    let sent = 0;
+    let failed = 0;
+
+    for (const user of USERS) {
+
+        try {
+
+            await ctx.copyMessage(user.id);
+
+            sent++;
+
+        } catch (e) {
+
+            failed++;
+
+        }
+
+        await new Promise(r => setTimeout(r, 50));
+
+    }
+
+    ctx.reply(
+`✅ Broadcast Completed
+
+👥 Sent : ${sent}
+
+❌ Failed : ${failed}`
+    );
 
 });
 
